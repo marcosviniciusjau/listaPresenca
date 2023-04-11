@@ -8,6 +8,7 @@ export function Home(name) {
   const [studentName, setStudentName]= useState('');
   const [students,setStudents] = useState([]);
 
+  const [user,setUser]= useState({name:'',avatar:''})
   function handleAddStudent(){
      const newStudent={
       name: studentName,
@@ -22,16 +23,25 @@ export function Home(name) {
   }
 
   useEffect(()=>{
-
-  },[]);
+    async function fetchData(){
+      const response = await fetch ('https://api.github.com/users/rodrigorgtic')
+      const data= await response.json();
+      
+      setUser({
+        name: data.name,
+        avatar:data.avatar_url,
+      })
+    }
+    fetchData();
+  }, []);
   
   return (
     <div className="container">
    <header>
    <h1>Lista de Presença</h1>
    <div>
-    <strong> Rodrigo</strong>
-    <img src="https://github.com/rodrigorgtic.png" alt="Foto de Perfil"/>
+    <strong> {user.name}</strong>
+    <img src={user.avatar} alt="Foto de Perfil"/>
    </div>
    </header> <input 
       type="text" 
