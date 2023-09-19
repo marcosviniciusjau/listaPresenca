@@ -8,7 +8,7 @@ export function Home(name) {
   const [studentName, setStudentName]= useState('');
   const [students,setStudents] = useState([]);
 
-  const [user,setUser]= useState({name:'',avatar:''})
+  const [user,setUser]= useState({name:'',perfil:''})
   function handleAddStudent(){
      const newStudent={
       name: studentName,
@@ -29,7 +29,7 @@ export function Home(name) {
       
       setUser({
         name: data.name,
-        avatar:data.avatar_url,
+        perfil:data.avatar_url,
       })
     }
     fetchData();
@@ -41,7 +41,7 @@ export function Home(name) {
    <h1>Lista de Presença</h1>
    <div>
     <strong> {user.name}</strong>
-    <img src={user.avatar} alt="Foto de Perfil"/>
+    <img src={user.perfil} alt="Foto de Perfil"/>
    </div>
    </header> <input 
       type="text" 
